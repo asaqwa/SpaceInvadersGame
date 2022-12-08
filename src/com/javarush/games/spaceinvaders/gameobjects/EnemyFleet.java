@@ -20,15 +20,6 @@ public class EnemyFleet {
         createShips();
     }
 
-    private void createShips() {
-        ships = new ArrayList<>();
-        for (int x = 0; x < COLUMNS_COUNT; x++) {
-            for (int y = 0; y < ROWS_COUNT; y++) {
-                ships.add(new EnemyShip(x*STEP, y*STEP+12));
-            }
-        }
-    }
-
     public void draw(Game game) {
         for (EnemyShip ship : ships) {
             ship.draw(game);
@@ -53,6 +44,16 @@ public class EnemyFleet {
         ships.forEach(s -> s.move(finalCurrentDirection, speed));
     }
 
+    public Bullet fire (Game game) {
+        if (ships.isEmpty()) return null;
+
+        int x = game.getRandomNumber(100 / SpaceInvadersGame.COMPLEXITY);
+        if (x > 0) return null;
+
+        x = game.getRandomNumber(ships.size());
+        return ships.get(x).fire();
+    }
+
     private double getLeftBorder() {
         return ships.stream().mapToDouble(ship -> ship.x).min().getAsDouble();
     }
@@ -63,5 +64,14 @@ public class EnemyFleet {
 
     private double getSpeed() {
         return Double.min(2d, (3d/ships.size()));
+    }
+
+    private void createShips() {
+        ships = new ArrayList<>();
+        for (int x = 0; x < COLUMNS_COUNT; x++) {
+            for (int y = 0; y < ROWS_COUNT; y++) {
+                ships.add(new EnemyShip(x*STEP, y*STEP+12));
+            }
+        }
     }
 }
