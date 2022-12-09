@@ -40,12 +40,13 @@ public class SpaceInvadersGame extends Game {
     private void moveSpaceObjects() {
         enemyFleet.move();
         enemyBullets.forEach(Bullet::move);
+        playerShip.move();
     }
 
     @Override
     public void onKeyPress(Key key) {
         if (key == Key.SPACE) {
-            if (isGameStopped == true) {
+            if (isGameStopped) {
                 createGame();
                 return;
             }

@@ -36,4 +36,14 @@ public class PlayerShip extends Ship {
     public void setDirection(Direction newDirection) {
         if (newDirection != Direction.DOWN) this.direction = newDirection;
     }
+
+    public void move() {
+        if (!isAlive) return;
+
+        if (direction == Direction.LEFT) x--;
+        else if (direction == Direction.RIGHT) x++;
+
+        if (x<0) x = 0;
+        else if ((x+width)>SpaceInvadersGame.WIDTH) x = SpaceInvadersGame.WIDTH - width;
+    }
 }
