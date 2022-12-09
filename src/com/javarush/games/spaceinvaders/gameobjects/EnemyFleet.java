@@ -84,6 +84,8 @@ public class EnemyFleet {
                 ships.add(new EnemyShip(x*STEP, y*STEP+12));
             }
         }
+        double bossX = STEP * COLUMNS_COUNT / 2 - ShapeMatrix.BOSS_ANIMATION_FIRST.length / 2 - 1;
+        ships.add(new Boss(bossX, 5));
     }
 
     public void deleteHiddenShips() {
