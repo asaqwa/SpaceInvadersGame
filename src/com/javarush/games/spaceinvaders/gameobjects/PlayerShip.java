@@ -4,7 +4,7 @@ import com.javarush.games.spaceinvaders.SpaceInvadersGame;
 
 import java.util.List;
 
-import static com.javarush.games.spaceinvaders.ShapeMatrix.PLAYER;
+import static com.javarush.games.spaceinvaders.ShapeMatrix.*;
 
 public class PlayerShip extends Ship {
     public PlayerShip() {
@@ -22,5 +22,12 @@ public class PlayerShip extends Ship {
                 }
             }
         }
+    }
+
+    @Override
+    public void kill() {
+        if (!isAlive) return;
+        isAlive = false;
+        setAnimatedView(KILL_PLAYER_ANIMATION_FIRST, KILL_PLAYER_ANIMATION_SECOND, KILL_PLAYER_ANIMATION_THIRD, DEAD_PLAYER);
     }
 }
