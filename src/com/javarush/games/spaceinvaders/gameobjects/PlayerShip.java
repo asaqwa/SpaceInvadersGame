@@ -33,6 +33,12 @@ public class PlayerShip extends Ship {
         setAnimatedView(KILL_PLAYER_ANIMATION_FIRST, KILL_PLAYER_ANIMATION_SECOND, KILL_PLAYER_ANIMATION_THIRD, DEAD_PLAYER);
     }
 
+    @Override
+    public Bullet fire() {
+        if (!isAlive) return null;
+        return new Bullet(x+2, y-BULLET.length, Direction.UP);
+    }
+
     public void setDirection(Direction newDirection) {
         if (newDirection != Direction.DOWN) this.direction = newDirection;
     }
