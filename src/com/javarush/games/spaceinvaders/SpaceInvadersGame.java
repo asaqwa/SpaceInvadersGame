@@ -8,12 +8,12 @@ import com.javarush.games.spaceinvaders.gameobjects.Star;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SpaceInvadersGame extends Game {
     public static final int WIDTH = 64;
     public static final int HEIGHT = 64;
     public static final int COMPLEXITY = 5;
+    private static final int PLAYER_BULLETS_MAX = 1;
 
     private List<Star> stars;
     private EnemyFleet enemyFleet;
@@ -52,6 +52,12 @@ public class SpaceInvadersGame extends Game {
                 createGame();
                 return;
             }
+
+            if (playerBullets.size() < PLAYER_BULLETS_MAX) {
+                Bullet bullet = playerShip.fire();
+                if (bullet != null) playerBullets.add(bullet);
+            }
+
         } else if (key == Key.LEFT) {
             playerShip.setDirection(Direction.LEFT);
         } else if (key == Key.RIGHT) {
@@ -89,6 +95,12 @@ public class SpaceInvadersGame extends Game {
         for (Star star: stars) star.draw(this);
     }
 
+    @Override
+    public void setCellValueEx(int x, int y, Color cellColor, String value) {
+        if (x<0 || y<0 || x >= WIDTH || y >= HEIGHT) return;
+        super.setCellValueEx(x, y, cellColor, value);
+    }
+
     private void createGame() {
         createStars();
         enemyFleet = new EnemyFleet();
@@ -110,6 +122,7 @@ public class SpaceInvadersGame extends Game {
 
     private void removeDeadBullets() {
         enemyBullets.removeIf(bullet -> !bullet.isAlive || bullet.y >= HEIGHT-1);
+        playerBullets.removeIf(bullet -> !bullet.isAlive || bullet.y + bullet.height < 0);
     }
 
     private void stopGame(boolean isWin) {
