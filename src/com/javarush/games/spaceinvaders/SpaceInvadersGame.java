@@ -57,6 +57,13 @@ public class SpaceInvadersGame extends Game {
         }
     }
 
+    @Override
+    public void onKeyReleased(Key key) {
+        if (key == Key.LEFT && playerShip.getDirection() == Direction.LEFT
+                || key == Key.RIGHT && playerShip.getDirection() == Direction.RIGHT)
+            playerShip.setDirection(Direction.UP);
+    }
+
     private void check() {
         playerShip.verifyHit(enemyBullets);
         removeDeadBullets();

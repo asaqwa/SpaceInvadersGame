@@ -37,6 +37,10 @@ public class PlayerShip extends Ship {
         if (newDirection != Direction.DOWN) this.direction = newDirection;
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
     public void move() {
         if (!isAlive) return;
 
