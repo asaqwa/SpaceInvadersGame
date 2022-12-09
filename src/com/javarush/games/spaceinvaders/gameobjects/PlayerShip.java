@@ -26,6 +26,10 @@ public class PlayerShip extends Ship {
         }
     }
 
+    public void win() {
+        setStaticView(WIN_PLAYER);
+    }
+
     @Override
     public void kill() {
         if (!isAlive) return;

@@ -73,6 +73,18 @@ public class EnemyFleet {
         return ships.stream().mapToDouble(ship -> ship.x).max().getAsDouble() + ships.get(0).width;
     }
 
+    public double getBottomBorder() {
+        double result = Double.MIN_VALUE;
+        for (Ship ship : ships) {
+            result = Double.max(result, ship.y + ship.height);
+        }
+        return result;
+    }
+
+    public int getShipsCount() {
+        return ships.size();
+    }
+
     private double getSpeed() {
         return Double.min(2d, (3d/ships.size()));
     }
