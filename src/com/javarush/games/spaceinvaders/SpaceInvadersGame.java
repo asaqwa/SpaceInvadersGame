@@ -42,6 +42,20 @@ public class SpaceInvadersGame extends Game {
         enemyBullets.forEach(Bullet::move);
     }
 
+    @Override
+    public void onKeyPress(Key key) {
+        if (key == Key.SPACE) {
+            if (isGameStopped == true) {
+                createGame();
+                return;
+            }
+        } else if (key == Key.LEFT) {
+            playerShip.setDirection(Direction.LEFT);
+        } else if (key == Key.RIGHT) {
+            playerShip.setDirection(Direction.RIGHT);
+        }
+    }
+
     private void check() {
         playerShip.verifyHit(enemyBullets);
         removeDeadBullets();
