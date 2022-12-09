@@ -30,7 +30,7 @@ public class PlayerShip extends Ship {
     public void kill() {
         if (!isAlive) return;
         isAlive = false;
-        setAnimatedView(KILL_PLAYER_ANIMATION_FIRST, KILL_PLAYER_ANIMATION_SECOND, KILL_PLAYER_ANIMATION_THIRD, DEAD_PLAYER);
+        setAnimatedView(false, KILL_PLAYER_ANIMATION_FIRST, KILL_PLAYER_ANIMATION_SECOND, KILL_PLAYER_ANIMATION_THIRD, DEAD_PLAYER);
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Boss extends EnemyShip {
     private int frameCount = 0;
     public Boss(double x, double y) {
         super(x, y);
-        setAnimatedView(BOSS_ANIMATION_FIRST, BOSS_ANIMATION_SECOND);
+        setAnimatedView(true, BOSS_ANIMATION_FIRST, BOSS_ANIMATION_SECOND);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class Boss extends EnemyShip {
     public void kill() {
         if (!isAlive) return;
         isAlive = false;
-        setAnimatedView(KILL_BOSS_ANIMATION_FIRST, KILL_BOSS_ANIMATION_SECOND, KILL_BOSS_ANIMATION_THIRD);
+        setAnimatedView(false, KILL_BOSS_ANIMATION_FIRST, KILL_BOSS_ANIMATION_SECOND, KILL_BOSS_ANIMATION_THIRD);
     }
 }
