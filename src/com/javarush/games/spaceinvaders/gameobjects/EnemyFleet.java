@@ -54,15 +54,19 @@ public class EnemyFleet {
         return ships.get(x).fire();
     }
 
-    public void verifyHit(List<Bullet> bullets) {
-        for (Ship ship : ships) {
-            bullets.forEach((bullet) -> {
+    public int verifyHit(List<Bullet> bullets) {
+        if (bullets.isEmpty()) return 0;
+        int score = 0;
+        for (EnemyShip ship : ships) {
+            for (Bullet bullet : bullets) {
                 if (ship.isCollision(bullet) && ship.isAlive && bullet.isAlive) {
                     ship.kill();
                     bullet.kill();
+                    score += ship.score;
                 }
-            });
+            }
         }
+        return score;
     }
 
     private double getLeftBorder() {

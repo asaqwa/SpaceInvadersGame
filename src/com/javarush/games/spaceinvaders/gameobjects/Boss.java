@@ -9,6 +9,7 @@ public class Boss extends EnemyShip {
     public Boss(double x, double y) {
         super(x, y);
         setAnimatedView(true, BOSS_ANIMATION_FIRST, BOSS_ANIMATION_SECOND);
+        score = 100;
     }
 
     @Override
